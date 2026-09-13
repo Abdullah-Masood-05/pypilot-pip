@@ -1,6 +1,6 @@
 # PyPilot (CLI & Python Package)
 
-[![PyPI version](https://img.shields.io/pypi/v/pypilot.svg)](https://pypi.org/project/pypilot/)
+[![PyPI version](https://img.shields.io/pypi/v/pypilot-cli.svg)](https://pypi.org/project/pypilot-cli/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/Engine-Rust-orange.svg)](https://github.com/Abdullah-Masood-05/pypilot)
 [![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://python.org)
@@ -22,17 +22,17 @@ PyPilot combines the ease of installation via `pip` with the raw execution speed
 
 Install via `pip`:
 ```bash
-pip install pypilot
+pip install pypilot-cli
 ```
 
 Or install as an isolated global tool with `uv`:
 ```bash
-uv tool install pypilot
+uv tool install pypilot-cli
 ```
 
 Or via `pipx`:
 ```bash
-pipx install pypilot
+pipx install pypilot-cli
 ```
 
 ---

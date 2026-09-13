@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/pypilot
+      url: https://pypi.org/p/pypilot-cli
     steps:
       - uses: actions/checkout@v4
 
