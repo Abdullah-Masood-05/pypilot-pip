@@ -18,3 +18,10 @@ def test_pypilot_version():
     res = pypilot.run(["--version"], capture_output=True)
     assert res.returncode == 0
     assert "pypilot" in res.stdout
+
+
+def test_bundled_version_matches_default_tag():
+    from pypilot.binary import BUNDLED_VERSION, DEFAULT_TAG, MIN_VERSION
+
+    assert DEFAULT_TAG == "v" + ".".join(map(str, BUNDLED_VERSION))
+    assert BUNDLED_VERSION >= MIN_VERSION

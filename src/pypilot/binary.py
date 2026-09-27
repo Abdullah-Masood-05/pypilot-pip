@@ -17,8 +17,12 @@ import zipfile
 from pathlib import Path
 
 GITHUB_REPO = "Abdullah-Masood-05/pypilot"
-DEFAULT_TAG = "v1.0.2"
+DEFAULT_TAG = "v1.0.4"
+# Oldest helper accepted from ~/.cargo/bin or PATH.
 MIN_VERSION = (1, 0, 2)
+# The release this package ships with. A cached download older than this is
+# replaced, so upgrading the pip package also upgrades the engine.
+BUNDLED_VERSION = tuple(int(p) for p in DEFAULT_TAG.lstrip("v").split("."))
 
 
 def get_platform_slug() -> tuple[str, str]:
@@ -145,7 +149,7 @@ def ensure_binary() -> Path:
     cached = get_cache_dir() / bin_name
     if cached.is_file():
         ver = probe_binary(cached)
-        if ver and ver >= MIN_VERSION:
+        if ver and ver >= BUNDLED_VERSION:
             return cached
 
     # 2. Check ~/.cargo/bin
