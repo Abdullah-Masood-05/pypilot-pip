@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    name: py${{ matrix.python }} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+        include:
+          # The oldest and newest supported Pythons on the other platforms the
+          # engine ships for, since archive handling differs between them.
+          - { os: windows-latest, python: "3.8" }
+          - { os: windows-latest, python: "3.14" }
+          - { os: macos-latest, python: "3.8" }
+          - { os: macos-latest, python: "3.14" }
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      # Warnings are errors so a deprecation that a new Python release turns
+      # into a behaviour change (as 3.14 did for tarfile) fails here first.
+      - name: Test
+        run: uv run --python ${{ matrix.python }} python -m pytest -W error

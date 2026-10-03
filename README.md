@@ -3,7 +3,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/pypilot-cli?color=blue&logo=pypi&logoColor=white)](https://pypi.org/project/pypilot-cli/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
 [![Rust](https://img.shields.io/badge/Engine-Rust-orange.svg?logo=rust&logoColor=white)](https://github.com/Abdullah-Masood-05/pypilot)
-[![Python](https://img.shields.io/badge/Python-3.8+-green.svg?logo=python&logoColor=white)](https://python.org)
+[![Python](https://img.shields.io/badge/Python-3.8%20to%203.14-green.svg?logo=python&logoColor=white)](https://python.org)
 
 **PyPilot** is a deterministic Python environment doctor, dependency solver, and toolchain manager. Powered by a high-speed compiled **Rust engine**, PyPilot calculates dependency intersections directly from PyPI wheel metadata, resolves hardware and CUDA build compatibility, and sets up working virtual environments without external AI or API keys.
 
