@@ -97,6 +97,23 @@ def probe_binary(path: Path | str) -> tuple[int, int, int] | None:
     return None
 
 
+def extract_archive(archive: Path | str, dest: Path | str) -> None:
+    """Extract a downloaded `.zip` or `.tar.gz` release archive into `dest`."""
+    if str(archive).endswith(".zip"):
+        with zipfile.ZipFile(archive, "r") as zf:
+            zf.extractall(dest)
+        return
+    with tarfile.open(archive, "r:gz") as tf:
+        # Python 3.14 filters tar members by default and 3.12/3.13 warn that it
+        # is coming. Ask for the same behaviour everywhere it is available (it
+        # was backported to the late 3.8-3.11 releases): plain files only, and
+        # nothing may land outside `dest`.
+        if hasattr(tarfile, "data_filter"):
+            tf.extractall(dest, filter="data")
+        else:
+            tf.extractall(dest)
+
+
 def download_binary(tag: str = DEFAULT_TAG) -> Path:
     """Download prebuilt native binary from GitHub releases."""
     slug, ext = get_platform_slug()
@@ -115,12 +132,7 @@ def download_binary(tag: str = DEFAULT_TAG) -> Path:
         with urllib.request.urlopen(req) as resp, open(tmp_archive, "wb") as f:
             shutil.copyfileobj(resp, f)
 
-        if ext == "zip":
-            with zipfile.ZipFile(tmp_archive, "r") as zf:
-                zf.extractall(tmpdir)
-        else:
-            with tarfile.open(tmp_archive, "r:gz") as tf:
-                tf.extractall(tmpdir)
+        extract_archive(tmp_archive, tmpdir)
 
         extracted_bin = Path(tmpdir) / bin_name
         if not extracted_bin.exists():
