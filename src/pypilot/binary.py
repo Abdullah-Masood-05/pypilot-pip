@@ -158,12 +158,19 @@ def install_binary(src: Path, dest: Path) -> None:
     binary that was just run leaves the old cache entry pointing at new bytes,
     and the next launch fails with "Exec format error". Copying to a temporary
     name and renaming over `dest` gives it a fresh file instead.
+
+    Windows has no such cache, but its antivirus briefly holds a freshly
+    written .exe open, which makes an immediate rename fail with "Access is
+    denied". There, a plain copy is both sufficient and reliable.
     """
+    if sys.platform == "win32":
+        shutil.copy2(src, dest)
+        return
+
     tmp = dest.with_name(f".{dest.name}.{os.getpid()}.tmp")
     try:
         shutil.copy2(src, tmp)
-        if sys.platform != "win32":
-            tmp.chmod(tmp.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+        tmp.chmod(tmp.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
         os.replace(tmp, dest)
     finally:
         if tmp.exists():
