@@ -87,7 +87,10 @@ def probe_binary(path: Path | str) -> tuple[int, int, int] | None:
             [str(path), "--version"],
             capture_output=True,
             text=True,
-            timeout=5,
+            # macOS scans a freshly downloaded binary on its first launch, which
+            # can take several seconds. Timing out here made a good engine look
+            # broken and triggered a needless re-download.
+            timeout=30,
             check=False,
         )
         if res.returncode == 0:
@@ -143,12 +146,28 @@ def download_binary(tag: str = DEFAULT_TAG) -> Path:
             else:
                 raise FileNotFoundError(f"{bin_name} not found in downloaded archive {archive_name}")
 
-        shutil.copy2(extracted_bin, dest_binary)
-
-    if sys.platform != "win32":
-        dest_binary.chmod(dest_binary.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+        install_binary(extracted_bin, dest_binary)
 
     return dest_binary
+
+
+def install_binary(src: Path, dest: Path) -> None:
+    """Put `src` at `dest` as a new file, never by rewriting `dest` in place.
+
+    macOS caches what it knows about an executable per file. Overwriting a
+    binary that was just run leaves the old cache entry pointing at new bytes,
+    and the next launch fails with "Exec format error". Copying to a temporary
+    name and renaming over `dest` gives it a fresh file instead.
+    """
+    tmp = dest.with_name(f".{dest.name}.{os.getpid()}.tmp")
+    try:
+        shutil.copy2(src, tmp)
+        if sys.platform != "win32":
+            tmp.chmod(tmp.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+        os.replace(tmp, dest)
+    finally:
+        if tmp.exists():
+            tmp.unlink()
 
 
 def ensure_binary() -> Path:

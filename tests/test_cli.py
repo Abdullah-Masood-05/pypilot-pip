@@ -87,3 +87,26 @@ def test_extract_archive_refuses_members_outside_the_destination(tmp_path):
     with pytest.raises(tarfile.TarError):
         extract_archive(archive, out)
     assert not (tmp_path / "escaped").exists()
+
+
+def test_install_binary_replaces_instead_of_rewriting_in_place(tmp_path):
+    import os
+    import sys
+
+    from pypilot.binary import install_binary
+
+    dest = tmp_path / "pypilot"
+    dest.write_bytes(b"old engine")
+    old_inode = os.stat(dest).st_ino
+
+    src = tmp_path / "new"
+    src.write_bytes(b"new engine")
+    install_binary(src, dest)
+
+    assert dest.read_bytes() == b"new engine"
+    # A rename gives `dest` a new file; rewriting in place would keep the inode.
+    if sys.platform != "win32":
+        assert os.stat(dest).st_ino != old_inode
+        assert os.access(dest, os.X_OK)
+    # No temporary file is left behind.
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["new", "pypilot"]
