@@ -10,7 +10,7 @@ from typing import List, Optional
 
 from .binary import ensure_binary, get_cache_dir
 
-__version__ = "1.0.6"
+__version__ = "1.1.0"
 
 
 def run(args: Optional[List[str]] = None, capture_output: bool = False) -> subprocess.CompletedProcess[str]:
