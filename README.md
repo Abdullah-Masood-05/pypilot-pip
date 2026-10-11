@@ -1,9 +1,15 @@
 # PyPilot (CLI & Python Package)
 
-[![PyPI version](https://img.shields.io/pypi/v/pypilot-cli?color=blue&logo=pypi&logoColor=white)](https://pypi.org/project/pypilot-cli/)
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
-[![Rust](https://img.shields.io/badge/Engine-Rust-orange.svg?logo=rust&logoColor=white)](https://github.com/Abdullah-Masood-05/pypilot)
-[![Python](https://img.shields.io/badge/Python-3.8%20to%203.14-green.svg?logo=python&logoColor=white)](https://python.org)
+<p align="center">
+  <a href="https://pypi.org/project/pypilot-cli/"><img src="https://img.shields.io/pypi/v/pypilot-cli?color=blue&logo=pypi&logoColor=white" alt="PyPI version" /></a>
+  <a href="https://pypi.org/project/pypilot-cli/"><img src="https://img.shields.io/pypi/pyversions/pypilot-cli?logo=python&logoColor=white" alt="Supported Python versions" /></a>
+  <a href="https://pypi.org/project/pypilot-cli/"><img src="https://img.shields.io/pypi/dm/pypilot-cli?color=2ea44f" alt="Monthly downloads" /></a>
+  <a href="https://github.com/Abdullah-Masood-05/pypilot-pip/blob/master/LICENSE"><img src="https://img.shields.io/pypi/l/pypilot-cli?color=blue" alt="License: AGPL-3.0-or-later" /></a>
+  <a href="https://github.com/Abdullah-Masood-05/pypilot"><img src="https://img.shields.io/badge/engine-Rust-orange?logo=rust&logoColor=white" alt="Rust engine" /></a>
+  <a href="https://github.com/Abdullah-Masood-05/pypilot"><img src="https://img.shields.io/github/stars/Abdullah-Masood-05/pypilot?style=social" alt="GitHub stars" /></a>
+</p>
+
+> ⭐ **Enjoying PyPilot?** If it saved you from a broken environment, please [star it on GitHub](https://github.com/Abdullah-Masood-05/pypilot). It's free and it helps other Python developers find it.
 
 **PyPilot** is a deterministic Python environment doctor, dependency solver, and toolchain manager. Powered by a high-speed compiled **Rust engine**, PyPilot calculates dependency intersections directly from PyPI wheel metadata, resolves hardware and CUDA build compatibility, and sets up working virtual environments without external AI or API keys.
 
@@ -131,6 +137,15 @@ PyPilot respects workspace settings in `.pypilot.toml` or your editor configurat
 
 ---
 
+## 💙 Support the project
+
+PyPilot is free and open source, built and maintained in spare time. If it helps you:
+
+- ⭐ [Star it on GitHub](https://github.com/Abdullah-Masood-05/pypilot): it's the easiest way to show support.
+- 🐛 [Report a bug or request a feature](https://github.com/Abdullah-Masood-05/pypilot/issues): reproducible environment problems are especially welcome.
+
+---
+
 ## 📄 License
 
-PyPilot is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0-or-later)**. See the [LICENSE](LICENSE) file for the full license text.
+PyPilot is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0-or-later)**. See the [LICENSE](https://github.com/Abdullah-Masood-05/pypilot-pip/blob/master/LICENSE) file for the full license text.
