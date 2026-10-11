@@ -32,9 +32,9 @@ classifiers = [
 dependencies = []
 
 [project.urls]
-Homepage = "https://github.com/Abdullah-Masood-05/pypilot"
-Repository = "https://github.com/Abdullah-Masood-05/pypilot"
-Issues = "https://github.com/Abdullah-Masood-05/pypilot/issues"
+Homepage = "https://github.com/pypilot-dev/pypilot"
+Repository = "https://github.com/pypilot-dev/pypilot"
+Issues = "https://github.com/pypilot-dev/pypilot/issues"
 
 [project.scripts]
 pypilot = "pypilot.cli:main"

@@ -16,7 +16,7 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-GITHUB_REPO = "Abdullah-Masood-05/pypilot"
+GITHUB_REPO = "pypilot-dev/pypilot"
 DEFAULT_TAG = "v1.1.0"
 # Oldest helper accepted from ~/.cargo/bin or PATH.
 MIN_VERSION = (1, 0, 2)
