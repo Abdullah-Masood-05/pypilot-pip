@@ -17,7 +17,7 @@ import zipfile
 from pathlib import Path
 
 GITHUB_REPO = "pypilot-dev/pypilot"
-DEFAULT_TAG = "v1.1.0"
+DEFAULT_TAG = "v1.2.0"
 # Oldest helper accepted from ~/.cargo/bin or PATH.
 MIN_VERSION = (1, 0, 2)
 # The release this package ships with. A cached download older than this is
