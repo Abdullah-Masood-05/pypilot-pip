@@ -13,14 +13,14 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        python: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+        python: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "3.15"]
         include:
           # The oldest and newest supported Pythons on the other platforms the
           # engine ships for, since archive handling differs between them.
           - { os: windows-latest, python: "3.8" }
-          - { os: windows-latest, python: "3.14" }
+          - { os: windows-latest, python: "3.15" }
           - { os: macos-latest, python: "3.8" }
-          - { os: macos-latest, python: "3.14" }
+          - { os: macos-latest, python: "3.15" }
     steps:
       - uses: actions/checkout@v4
 

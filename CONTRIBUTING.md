@@ -80,7 +80,7 @@ engine does belong in the [engine repo](https://github.com/pypilot-dev/pypilot).
 
 ## Setting up for development
 
-You need [uv](https://docs.astral.sh/uv/). The supported Pythons are 3.8 to 3.14.
+You need [uv](https://docs.astral.sh/uv/). The supported Pythons are 3.8 to 3.15.
 
 ```bash
 git clone https://github.com/pypilot-dev/pypilot-pip.git
@@ -95,7 +95,7 @@ uv sync
 | `uv build` | Build the sdist and wheel into `dist/` |
 | `uvx twine check dist/*` | Check the built package's metadata |
 
-CI runs the tests on Python 3.8 to 3.14 on Linux, and on 3.8 and 3.14 on Windows and
+CI runs the tests on Python 3.8 to 3.15 on Linux, and on 3.8 and 3.15 on Windows and
 macOS, because archive handling differs between platforms. Warnings are errors so
 that a deprecation which a new Python release turns into a behaviour change fails
 there first.
